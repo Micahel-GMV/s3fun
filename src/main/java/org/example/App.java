@@ -20,7 +20,7 @@ public class App
         List<StoreDAO> stores = new StoreListGenerator().generateStores(numStores, 10);
 
         // Add 5 products to each store
-        new ProductListGenerator().addFlushProducts(stores, 130000, 5120);
+        new ProductListGenerator().addFlushProducts(stores, 130000, 2048);
 
         stopWatch.stop();
         System.out.println("Files generated in " + stopWatch.getTime() + " ms" + " it is " + stopWatch.getTime()/numStores + " per store.");
