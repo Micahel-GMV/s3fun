@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Random;
 
 public class ProductListGenerator {
-    private static Random random = new Random();
+    private Random random = new Random();
 
-    public static void addProducts(StoreDAO store, int numProducts, int memoSize) {
+    public void addProducts(StoreDAO store, int numProducts, int memoSize) {
         for(int i=0; i<numProducts; i++) {
             ProductDAO product = generateRandomProduct(i, store, memoSize);
             if (store.getProducts() == null) {
@@ -23,22 +23,22 @@ public class ProductListGenerator {
         }
     }
 
-    public static void addProducts(List<StoreDAO> stores, int numProducts, int memoSize) {
+    public void addProducts(List<StoreDAO> stores, int numProducts, int memoSize) {
         for(StoreDAO store:stores) {
             addProducts(store, numProducts, memoSize);
         }
     }
 
-    public static void addFlushProducts(List<StoreDAO> stores, int numProducts, int memoSize) {
+    public void addFlushProducts(List<StoreDAO> stores, int numProducts, int memoSize) {
         stores.parallelStream().forEach(store -> {
             addProducts(store, numProducts, memoSize);
-            FileUtils.storeProductFile(store);
+            new FileUtils().storeProductFile(store);
             store.setProducts(null);
             System.out.println(store.getStoreId() + " store generated and flushed");
         });
     }
 
-    private static String randomString(int length) {
+    private String randomString(int length) {
 
         int leftLimit = 97; // ' '
         int rightLimit = 122; // '~'
@@ -52,7 +52,7 @@ public class ProductListGenerator {
         return buffer.toString();
     }
 
-    private static ProductDAO generateRandomProduct(int productId, StoreDAO store, int memoSize) {
+    private ProductDAO generateRandomProduct(int productId, StoreDAO store, int memoSize) {
         ProductDAO product = new ProductDAO();
         product.setProductId(productId);
         product.setStoreId(store.getStoreId());

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class StoreListGenerator {
-    public static List<StoreDAO> generateStores(int numStores, int numLocales) {
+    public List<StoreDAO> generateStores(int numStores, int numLocales) {
 
         List<StoreDAO> stores = new ArrayList<>();
 

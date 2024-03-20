@@ -12,14 +12,14 @@ public class App
 {
     public static void main( String[] args )
     {
-        FileUtils.cleanOutputDir();
+        new FileUtils().cleanOutputDir();
         StopWatch stopWatch = new StopWatch();
         stopWatch.start();
         // Generate stores
-        List<StoreDAO> stores = StoreListGenerator.generateStores(256, 10);
+        List<StoreDAO> stores = new StoreListGenerator().generateStores(256, 10);
 
         // Add 5 products to each store
-        ProductListGenerator.addFlushProducts(stores, 13000, 2048);
+        new ProductListGenerator().addFlushProducts(stores, 13000, 5120);
 
         stopWatch.stop();
         System.out.println("Files generated in " + stopWatch.getTime() + " ms");

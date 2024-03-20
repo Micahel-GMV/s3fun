@@ -12,13 +12,13 @@ public class FileUtils {
 
     private static final String outputPath = System.getProperty("user.dir") + "/output";
 
-    public static void writeProductFiles(List<StoreDAO> stores) {
+    public void writeProductFiles(List<StoreDAO> stores) {
         for (StoreDAO store : stores) {
             storeProductFile(store);
         }
     }
 
-    public static void storeProductFile(StoreDAO store) {
+    public void storeProductFile(StoreDAO store) {
         ObjectMapper mapper = new ObjectMapper();
 
         String fileName = store.getLocationId() + "-" + store.getStoreId() + ".json";
@@ -40,7 +40,7 @@ public class FileUtils {
         }
     }
 
-    public static void cleanOutputDir() {
+    public void cleanOutputDir() {
         File output = new File(outputPath);
         if(output.exists()) {
             File[] files = output.listFiles();
