@@ -30,7 +30,7 @@ public class ProductListGenerator {
     }
 
     public void addFlushProducts(List<StoreDAO> stores, int numProducts, int memoSize) {
-        stores.parallelStream().forEach(store -> {
+        stores.stream().forEach(store -> {
             addProducts(store, numProducts, memoSize);
             new FileUtils().storeProductFile(store);
             store.setProducts(null);
